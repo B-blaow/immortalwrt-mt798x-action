@@ -21,11 +21,11 @@ on:
 
 env:
   #REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_URL: https://github.com/Lienol/openwrt
-  #REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
+  #REPO_URL: https://github.com/Lienol/openwrt
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   #REPO_BRANCH: master
-  REPO_BRANCH: main
-  #REPO_BRANCH: openwrt-21.02
+  #REPO_BRANCH: main
+  REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   #CONFIG_FILE: Lienol.config
   CONFIG_FILE: .config
@@ -84,6 +84,12 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
+    - name: Update rm ssr
+      run: cd openwrt && rm -rf feeds/luci/applications/luci-app-ssr-plus
+    
+    - name: Update rm cpssr
+      cp -Rf feeds/helloworld/luci-app-ssr-plus feeds/luci/applications
+      
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
