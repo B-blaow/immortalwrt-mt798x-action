@@ -84,11 +84,17 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: Update rm ssr
+    - name: rm ssr
       run: cd openwrt && rm -rf feeds/luci/applications/luci-app-ssr-plus
-    
-    - name: Update rm cpssr
+            
+    - name: cpssr
       run: cd openwrt && cp -Rf feeds/helloworld/luci-app-ssr-plus feeds/luci/applications
+
+    - name: cp
+      run: cd openwrt && cp -Rf feeds/helloworld/* feeds/packages/net
+      
+    - name: rm 
+      run: cd openwrt && rm -rf feeds/packages/net/luci-app-ssr-plus
       
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
