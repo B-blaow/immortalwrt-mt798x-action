@@ -88,7 +88,7 @@ jobs:
       run: cd openwrt && rm -rf feeds/luci/applications/luci-app-ssr-plus
     
     - name: Update rm cpssr
-      cp -Rf feeds/helloworld/luci-app-ssr-plus feeds/luci/applications
+      run: cd openwrt && cp -Rf feeds/helloworld/luci-app-ssr-plus feeds/luci/applications
       
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
